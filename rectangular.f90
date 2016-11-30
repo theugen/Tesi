@@ -8,8 +8,7 @@ include 'grid_routines.f90'
 
 program prova
   implicit none
-!  real(kind=4), dimension(5) :: alpha, x, y, z, depth, dip, pot1, pot2, pot3, pot4 ! input values for dc3d0
-  real(kind=4) :: alpha, depth, dip, pot1, pot2, pot3, pot4 ! parameters of point-like fault
+  real(kind=4) :: alpha, depth, dip, al1, al2, aw1, aw2, disl1, disl2, disl3 ! parameters of rectangular fault
   real(kind=4), allocatable, dimension(:) :: x, y ! obs-point coordinates
   real(kind=4), allocatable, dimension(:,:) :: ux, uy, uz, uxx, uyx, uzx, uxy, uyy, uzy, uxz, uyz, uzz, iret ! values returned by dc3d0
   integer :: out_unit = 1, in_unit = 2, coords = 3 ! opening i/o devices, please don't use 5 or 6 (special meaning)
@@ -19,8 +18,8 @@ program prova
   integer :: npoints
   
 
-  open(unit=in_unit, file='param.txt', action='read') 
-  read(in_unit, *) alpha, depth, dip, pot1, pot2, pot3, pot4 !Read parameters of the point-like fault
+  open(unit=in_unit, file='rect.dat', action='read') 
+  read(in_unit, *) alpha, depth, dip, al1, al2, aw1, aw2, disl1, disl2, disl3 !Read parameters of the point-like fault
   
   print *, 'Which is the width of the grid?'
   read *, gwid
@@ -41,8 +40,8 @@ program prova
   !Calling subroutine and storing results in the i-th component of an array
   do i=1, npoints 
     do j=1, npoints
-      call dc3d0(alpha, x(i), y(j), 0e0, depth, dip, pot1, pot2, pot3,&
-                 & pot4, ux(i,j), uy(i,j), uz(i,j), uxx(i,j), uyx(i,j)&
+      call dc3d0(alpha, x(i), y(j), 0e0, depth, dip, al1, al2, aw1, aw2, disl1, disl2&
+                 &, disl3, ux(i,j), uy(i,j), uz(i,j), uxx(i,j), uyx(i,j)&
                  &, uzx(i,j), uxy(i,j), uyy(i,j), uzy(i,j), uxz(i,j),&
                  & uyz(i,j), uzz(i,j), iret(i,j))
     end do
