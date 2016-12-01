@@ -1,4 +1,5 @@
 subroutine ask
+implicit none
 character*99 ciao
 Write(*,*) 'continue?'
 Read(*,*) ciao
@@ -40,7 +41,7 @@ program prova
   !Calling subroutine and storing results in the i-th component of an array
   do i=1, npoints 
     do j=1, npoints
-      call dc3d0(alpha, x(i), y(j), 0e0, depth, dip, al1, al2, aw1, aw2, disl1, disl2&
+      call dc3d(alpha, x(i), y(j), 0e0, depth, dip, al1, al2, aw1, aw2, disl1, disl2&
                  &, disl3, ux(i,j), uy(i,j), uz(i,j), uxx(i,j), uyx(i,j)&
                  &, uzx(i,j), uxy(i,j), uyy(i,j), uzy(i,j), uxz(i,j),&
                  & uyz(i,j), uzz(i,j), iret(i,j))

@@ -1,5 +1,21 @@
+Module PARAMETERS
+Implicit None
+Real, Parameter :: d2r=asin(1e0)/9e1, km=1e3
+Real  :: fake
+contains
+Subroutine Start_PARAMETERS
+Implicit None
+Real :: c
+c = 8e5
+fake = dsqrt(c)
+End Subroutine
+End Module
+
+
 ! Computes no of gridpoints
+
 subroutine compute_step(gwid, step, npoints)
+  implicit none
   real :: gwid, step
   integer :: npoints
 
@@ -10,10 +26,11 @@ end subroutine compute_step
 
 ! generates gridpoints
 subroutine grid_gen(gwid, step, npoints, x, y)
+  implicit none
   real :: gwid, step
   real, dimension(npoints) :: x, y
   real :: inf, sup
-  integer :: i! npoints, i
+  integer ::  npoints, i
 
   sup = (gwid/2)
   inf = -sup
@@ -25,6 +42,46 @@ subroutine grid_gen(gwid, step, npoints, x, y)
   end do
 
 end subroutine grid_gen
+
+
+subroutine rotate_versors(angle)
+  implicit none
+  real, dimension(2) :: x_ver, y_ver
+  real :: angle
+  
+   
+  
+end subroutine
+
+
+!get dislocation from seismic moment
+subroutine get_disl(moment, mu, depth, length, disl)
+  implicit none
+  real :: mu, depth, length, disl, moment
+
+  disl = moment/(mu*depth*length)
+
+end subroutine
+
+
+
+
+!rotate from theta=0 to theta=strike_angle
+!subroutine rotate(x_coord, y_coord, npoints, strike_angle)
+!  implicit none
+!  integer :: npoints, i
+!  real, dimension(npoints) :: x_coord, y_coord, tempx, tempy
+
+!  do i=1, npoints
+!    tempx(i) = (x_coord(i)*cos(strike_angle)) - (y_coord(i)*sin(strike_angle))  
+!    tempy(i) = (x_coord(i)*sin(strike_angle)) + (y_coord(i)*cos(strike_angle))
+!  end do
+
+
+!end subroutine
+
+
+
 
   !Reading file
   !do 
