@@ -44,13 +44,14 @@ subroutine grid_gen(gwid, step, npoints, x, y)
 end subroutine grid_gen
 
 
-subroutine rotate_versors(angle)
+! Routine for rotating point of an angle equal to strike-angle
+subroutine rotate_point(strike, x, y, xx, yy)
   implicit none
-  real, dimension(2) :: x_ver, y_ver
-  real :: angle
-  
+  real :: strike, x, y, xx, yy
    
-  
+  xx = x*cos(strike) - y*sin(strike)
+  yy = x*sen(strike) + y*cos(strike)
+     
 end subroutine
 
 
