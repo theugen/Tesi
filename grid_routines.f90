@@ -1,15 +1,15 @@
-Module PARAMETERS
-Implicit None
-Real, Parameter :: d2r=asin(1e0)/9e1, km=1e3
-Real  :: fake
-contains
-Subroutine Start_PARAMETERS
-Implicit None
-Real :: c
-c = 8e5
-fake = dsqrt(c)
-End Subroutine
-End Module
+!Module PARAMETERS
+!Implicit None
+!Real, Parameter :: d2r=asin(1e0)/9e1, km=1e3
+!Real  :: fake
+!contains
+!Subroutine Start_PARAMETERS
+!Implicit None
+!Real :: c
+!c = 8e5
+!fake = dsqrt(c)
+!End Subroutine
+!End Module
 
 
 ! Computes no of gridpoints
@@ -50,7 +50,7 @@ subroutine rotate_point(strike, x, y, xx, yy)
   real :: strike, x, y, xx, yy
    
   xx = x*cos(strike) - y*sin(strike)
-  yy = x*sen(strike) + y*cos(strike)
+  yy = x*sin(strike) + y*cos(strike)
      
 end subroutine
 
