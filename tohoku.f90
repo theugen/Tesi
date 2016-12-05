@@ -64,21 +64,21 @@ Use PARAMETERS
            & uyy(npoints, npoints), uzy(npoints, npoints), uxz(npoints, npoints),&
            & uyz(npoints, npoints), uzz(npoints, npoints), iret(npoints, npoints))
 
+
   !Calling subroutine and storing results in the i-th component of an array
   do i=1, npoints 
     do j=1, npoints
 !      Call GEO_TO_EPI(lon(i),colat(i),cos_lonp,sin_latp,colatp)
 !      Call EPI_TO_FLAT(cos_lonp,sin_lonp,x,y)
 
-
 !*****PROBLEMS WITH ROTATE_POINT!
-      call rotate_point(strike,x(i),y(i),xx,yy)
-      call dc3d(alpha, xx, yy, 0e0, depth, dip, al1, al2, aw1, aw2, disl1, disl2&
-                 &, disl3, rotx, roty, uz(i,j), uxx(i,j), uyx(i,j)&
-                 &, uzx(i,j), uxy(i,j), uyy(i,j), uzy(i,j), uxz(i,j),&
-                 & uyz(i,j), uzz(i,j), iret(i,j))
-      ux(i, j) = rotx
-      uy(i, j) = roty
+      call rotate_point(strike,x(i),y(j),xx,yy)
+!      call dc3d(alpha, xx, yy, 0e0, depth, dip, al1, al2, aw1, aw2, disl1, disl2&
+!                 &, disl3, rotx, roty, uz(i,j), uxx(i,j), uyx(i,j)&
+!                 &, uzx(i,j), uxy(i,j), uyy(i,j), uzy(i,j), uxz(i,j),&
+!                 & uyz(i,j), uzz(i,j), iret(i,j))
+!      ux(i, j) = rotx
+!      uy(i, j) = roty
 !!    Call ROTATE_VECTOR(strike,rotx,roty,ux(i,j),uy(i,j))
 !!    Call ROTATE_POINT(-strike,uxx
     end do
@@ -90,8 +90,8 @@ Use PARAMETERS
   !Writing results on file 
   do i = 1, npoints 
     do j=1, npoints
-      write(out_unit, *) x(i), y(j), ux(i,j), uy(i,j), uz(i,j) 
-      write(*,'(5E15.5)') x(i),y(j),ux(i,j),uy(i,j),uz(i,j)
+      write(out_unit, *) x(i), y(j)!, ux(i,j), uy(i,j), uz(i,j) 
+      write(*,'(5E15.5)') x(i),y(j)!,ux(i,j),uy(i,j),uz(i,j)
     end do
   end do  
 
