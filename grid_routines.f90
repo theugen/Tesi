@@ -55,6 +55,19 @@ subroutine rotate_point(strike, x, y, xx, yy)
 end subroutine
 
 
+! Routine for rotating vector in a new coordinate system
+subroutine rotate_vector(strike, rotx, roty, ux, uy)
+  implicit none
+  real :: strike, rotx, roty, ux, uy
+  
+  ux = rotx*cos(strike) - roty*sin(strike)
+  uy = rotx*sin(strike) + roty*cos(strike)
+
+end subroutine
+
+
+
+!*******Error! Area is not depth*length...**************
 !get dislocation from seismic moment
 subroutine get_disl(moment, mu, depth, length, disl)
   implicit none

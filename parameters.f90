@@ -14,10 +14,6 @@ module PARAMETERS
    real(kind=4) ::  depth = 10e0
    real(kind=4) ::  dip = 9e0
    real(kind=4) ::  length=250e0
-!   real(kind=4) ::  al2= length/2e0
-!   real(kind=4) ::  al1=-al2
-!   real(kind=4) ::  aw1=-150e0
-!   real(kind=4) ::  aw2=0e0
    real(kind=4) ::  rake=78e0*d2r
    real(kind=4) ::  strike=(180e0-193e0)*d2r
 
